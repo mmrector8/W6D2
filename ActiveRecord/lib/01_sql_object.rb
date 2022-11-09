@@ -12,18 +12,13 @@ class SQLObject
   end
 
   def self.table_name=(table_name)
-    # ...
+    @table_name = table_name
   end
 
-  def self.table_name
-      self.each do |name|
-      define_method("#{name}=".to_sym) do |new_value|
-        instance_variable_set("@#{name}", new_value)
-    end
-      define_method("#{name}".to_sym) do 
-        instance_variable_get("@#{name}")
-     end
+  def self.table_name 
+      @table_name = self.to_s.downcase + 's'
   end
+
 
   def self.all
     # ...
